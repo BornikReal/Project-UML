@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package service_component;
+
+option go_package = "service-component/pb;pb";
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message CheckTokenRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message RegisterRequest {
+  string username = 1;
+  string profile_description = 2;
+  string avatar = 3;
+  string email = 4;
+  string password = 5;
+}
+
+message GetFilmRequest {
+  int64 id = 1;
+}
+
+message Film {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  string cover = 4;
+  repeated string genres = 5;
+  repeated string actors = 6;
+  repeated string images = 7;
+  repeated string trailers = 8;
+  repeated int64 ratings = 9;
+}
+
+message GetFilmsResponse {
+  repeated Film film = 1;
+}
+
+message RateFilmRequest {
+  int64 id = 1;
+  float score = 2;
+  string review = 3;
+}
+
+message RatingModeration {
+  int64 rating_id = 1;
+  float score = 2;
+  string review = 3;
+  int64 user_id = 4;
+}
+
+message GetRatingsForModerationResponse {
+  repeated RatingModeration ratings = 1;
+}
+
+message UnlockReviewRequest {
+  int64 id = 1;
+}
